@@ -296,6 +296,6 @@ Built with modern web technologies:
 
 [badges here...]
 
-![Shalby Jewels - Where Tradition Meets Elegance](./docs/images/hero-screenshot.png)
+![Shalby Jewels - Where Tradition Meets Elegance](./docs/images/image.png)
 
 ---
