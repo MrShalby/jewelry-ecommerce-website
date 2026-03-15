@@ -279,16 +279,6 @@ This project is **proprietary**. All rights reserved by Shalby Jewels.
 
 ---
 
-## 📞 Support & Contact
-
-For questions, support, or business inquiries:
-
-- **Email:** contact@shalbyjewels.com
-- **WhatsApp:** +91 98765 43210
-- **Location:** Ahmedabad, Gujarat, India
-- **Hours:** Mon-Fri 10:00 AM - 8:00 PM | Sat 10:00 AM - 9:00 PM | Sun 11:00 AM - 7:00 PM
-
----
 
 ## 🙏 Credits
 
