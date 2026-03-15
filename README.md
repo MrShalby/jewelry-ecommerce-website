@@ -1,5 +1,12 @@
 # Shalby Jewels
 
+
+[badges here...]
+
+![Shalby Jewels - Where Tradition Meets Elegance](./docs/images/hero-screenshot.png)
+
+---
+
 A premium luxury jewellery e-commerce website built with **Next.js 15**, **Tailwind CSS v4**, and **Framer Motion**. Features a stunning user interface with gold gradient theme, smooth animations, and a complete e-commerce experience.
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.0-black?logo=next.js)
