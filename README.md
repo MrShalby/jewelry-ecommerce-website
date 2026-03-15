@@ -291,11 +291,11 @@ Built with modern web technologies:
 
 ---
 
-**Made with ❤️ for premium jewellery lovers**
-
-
-[badges here...]
 
 ![Shalby Jewels - Where Tradition Meets Elegance](./docs/images/image.png)
 
 ---
+
+**Made with ❤️ for premium jewellery lovers**
+
+
