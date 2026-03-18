@@ -44,7 +44,7 @@ export function HeroSection() {
         style={{ opacity }}
         className="relative z-10 container mx-auto px-4 text-center"
       >
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
@@ -52,7 +52,7 @@ export function HeroSection() {
         >
           <Sparkles className="w-4 h-4 text-primary" />
           <span className="text-sm text-primary">Since 1965 in Ahmedabad</span>
-        </motion.div>
+        </motion.div> */}
 
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
