@@ -23,9 +23,9 @@ export const siteConfig = {
 
 export const theme = {
   colors: {
-    background: "#0A0A0A",
+    background: "#05160E",
     gold: "#D4AF37",
-    goldLight: "#FFD700",
-    goldGradient: "linear-gradient(135deg, #D4AF37 0%, #FFD700 100%)",
+    goldLight: "#F3E5AB",
+    goldGradient: "linear-gradient(135deg, #D4AF37 0%, #FFF3CD 50%, #AA7C11 100%)",
   },
 }

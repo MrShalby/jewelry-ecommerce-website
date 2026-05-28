@@ -188,7 +188,8 @@ export function ShopFilters({ isOpen, onClose, filters, setFilters }: ShopFilter
           {/* Apply Button (Mobile) */}
           <Button
             onClick={onClose}
-            className="w-full gold-gradient text-primary-foreground lg:hidden"
+            variant="gold"
+            className="w-full lg:hidden"
           >
             Apply Filters
           </Button>

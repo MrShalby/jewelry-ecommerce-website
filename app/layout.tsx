@@ -55,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
-      <body className="font-sans antialiased bg-background text-foreground min-h-screen">
+      <body className="font-sans antialiased bg-background text-foreground min-h-screen" suppressHydrationWarning>
         <StoreProvider>
           <ScrollProgress />
           <Navbar />

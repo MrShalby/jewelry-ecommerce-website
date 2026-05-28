@@ -16,6 +16,7 @@ import {
   Shield,
   RefreshCw,
   ZoomIn,
+  MessageCircle,
 } from "lucide-react"
 import { products } from "@/data/products"
 import { useStore } from "@/hooks/use-store"
@@ -66,7 +67,6 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     )
   }
 
-  // Simulate 360 rotation by cycling through images
   const handle360 = () => {
     const interval = setInterval(() => {
       setRotation((prev) => {
@@ -90,178 +90,191 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
     imageRef.current.style.transformOrigin = `${x}% ${y}%`
   }
 
+  const whatsappInquiryUrl = `https://wa.me/${siteConfig.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
+    `Hi ${siteConfig.name}! I am viewing the "${product.name}" (${product.karat}, ${product.weight}, Price: ${formatPrice(product.price)}) on your website. I'd like to ask a few questions about this design.`
+  )}`
+
   return (
-    <div className="min-h-screen pt-24 pb-16">
-      <div className="container mx-auto px-4">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
+    <div className="min-h-screen pt-28 pb-20 bg-background">
+      <div className="container mx-auto px-6">
+        
+        {/* Luxury Breadcrumb */}
+        <nav className="flex items-center gap-2.5 text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground mb-12">
           <Link href="/" className="hover:text-primary transition-colors">
             Home
           </Link>
-          <span>/</span>
+          <span className="text-muted-foreground/45">/</span>
           <Link href="/shop" className="hover:text-primary transition-colors">
             Shop
           </Link>
-          <span>/</span>
+          <span className="text-muted-foreground/45">/</span>
           <Link
             href={`/shop?category=${encodeURIComponent(product.category)}`}
             className="hover:text-primary transition-colors"
           >
             {product.category}
           </Link>
-          <span>/</span>
-          <span className="text-foreground">{product.name}</span>
+          <span className="text-muted-foreground/45">/</span>
+          <span className="text-foreground tracking-normal normal-case font-serif">{product.name}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          {/* Image Gallery */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-24 items-start">
+          
+          {/* Left: Image Gallery - 6 cols */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="lg:col-span-6 space-y-6"
           >
-            {/* Main Image */}
-            <div
-              ref={imageRef}
-              className={cn(
-                "relative aspect-square rounded-2xl overflow-hidden bg-card gold-border mb-4 cursor-zoom-in",
-                isZoomed && "cursor-zoom-out"
-              )}
-              onClick={() => setIsZoomed(!isZoomed)}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={() => isZoomed && setIsZoomed(false)}
-            >
-              <Image
-                src={product.images[currentImageIndex]}
-                alt={product.name}
-                fill
+            {/* Main Image Frame */}
+            <div className="p-2.5 border border-border/85 bg-white rounded-[2rem] shadow-xs">
+              <div
+                ref={imageRef}
                 className={cn(
-                  "object-cover transition-transform duration-300",
-                  isZoomed && "scale-150"
+                  "relative aspect-square rounded-[1.6rem] overflow-hidden bg-secondary cursor-zoom-in z-10",
+                  isZoomed && "cursor-zoom-out"
                 )}
-                style={{ transform: `rotate(${rotation}deg)` }}
-              />
+                onClick={() => setIsZoomed(!isZoomed)}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={() => isZoomed && setIsZoomed(false)}
+              >
+                <Image
+                  src={product.images[currentImageIndex]}
+                  alt={product.name}
+                  fill
+                  className={cn(
+                    "object-cover transition-transform duration-300",
+                    isZoomed && "scale-150"
+                  )}
+                  style={{ transform: `rotate(${rotation}deg)` }}
+                />
 
-              {/* Navigation Arrows */}
-              {product.images.length > 1 && (
-                <>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      prevImage()
-                    }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-background/80 rounded-full hover:bg-background transition-colors"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      nextImage()
-                    }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-background/80 rounded-full hover:bg-background transition-colors"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </>
-              )}
-
-              {/* Zoom Icon */}
-              <div className="absolute top-4 right-4 p-2 bg-background/80 rounded-full">
-                <ZoomIn className="w-4 h-4" />
-              </div>
-
-              {/* Badges */}
-              <div className="absolute top-4 left-4 flex flex-col gap-2">
-                {product.featured && (
-                  <span className="px-3 py-1 text-xs font-medium gold-gradient text-primary-foreground rounded-full">
-                    Featured
-                  </span>
+                {/* Arrows */}
+                {product.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        prevImage()
+                      }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 bg-white/95 backdrop-blur-xs rounded-full shadow-xs hover:text-primary transition-colors z-20"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        nextImage()
+                      }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 bg-white/95 backdrop-blur-xs rounded-full shadow-xs hover:text-primary transition-colors z-20"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </>
                 )}
-                {product.bestseller && (
-                  <span className="px-3 py-1 text-xs font-medium bg-foreground text-background rounded-full">
-                    Bestseller
-                  </span>
-                )}
+
+                {/* Zoom indicator overlay */}
+                <div className="absolute top-4 right-4 p-2 bg-white/90 backdrop-blur-xs rounded-full shadow-2-xs pointer-events-none">
+                  <ZoomIn className="w-4 h-4 text-muted-foreground" />
+                </div>
+
+                {/* Top Badges */}
+                <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+                  {product.featured && (
+                    <span className="px-2.5 py-0.5 text-[9px] font-sans font-bold tracking-widest uppercase bg-primary text-primary-foreground rounded-full">
+                      Featured
+                    </span>
+                  )}
+                  {product.bestseller && (
+                    <span className="px-2.5 py-0.5 text-[9px] font-sans font-bold tracking-widest uppercase bg-foreground text-background rounded-full">
+                      Bestseller
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
-            {/* Thumbnails */}
-            <div className="flex items-center gap-4">
+            {/* Thumbnails Row */}
+            <div className="flex items-center gap-4 px-1">
               {product.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
                   className={cn(
-                    "relative w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors",
+                    "relative w-20 h-20 rounded-xl overflow-hidden p-1 bg-white border transition-all duration-300",
                     currentImageIndex === index
-                      ? "border-primary"
-                      : "border-border hover:border-primary/50"
+                      ? "border-primary shadow-xs scale-102"
+                      : "border-border/60 hover:border-primary/45"
                   )}
                 >
-                  <Image
-                    src={image}
-                    alt={`${product.name} view ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
+                  <div className="relative w-full h-full rounded-lg overflow-hidden">
+                    <Image
+                      src={image}
+                      alt={`${product.name} view ${index + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </button>
               ))}
-              {/* 360 View Button */}
+              {/* 360 View */}
               <button
                 onClick={handle360}
-                className="w-20 h-20 rounded-lg border-2 border-border hover:border-primary flex items-center justify-center bg-card transition-colors"
+                className="w-20 h-20 rounded-xl border border-border/80 hover:border-primary/50 flex flex-col items-center justify-center bg-white text-[10px] font-sans font-bold uppercase tracking-wider text-muted-foreground transition-all duration-300 shadow-2-xs shrink-0"
               >
-                <span className="text-xs text-muted-foreground">360°</span>
+                <span className="text-xs">360°</span>
+                <span className="text-[8px] text-primary mt-0.5">Spin</span>
               </button>
             </div>
           </motion.div>
 
-          {/* Product Details */}
+          {/* Right: Product Details - 6 cols */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-6 space-y-8 text-left"
           >
-            <div>
-              <p className="text-primary text-sm uppercase tracking-wider mb-2">
+            {/* Headers */}
+            <div className="space-y-3">
+              <span className="text-[10px] text-primary font-sans font-bold tracking-widest uppercase block">
                 {product.category}
-              </p>
-              <h1 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
+              </span>
+              <h1 className="font-serif text-3xl md:text-4xl text-foreground font-semibold leading-tight">
                 {product.name}
               </h1>
-              <div className="flex items-baseline gap-4">
-                <span className="font-serif text-4xl gold-gradient-text">
+              <div className="flex items-baseline gap-4 pt-1">
+                <span className="font-serif text-3xl font-bold text-primary">
                   {formatPrice(product.price)}
                 </span>
-                <span className="text-muted-foreground">
-                  {product.karat} | {product.weight}
+                <span className="text-xs uppercase tracking-wider font-semibold font-sans text-muted-foreground bg-secondary px-2.5 py-1 rounded-md border border-border/40">
+                  {product.karat} Purity • {product.weight}
                 </span>
               </div>
             </div>
 
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {product.description}
             </p>
 
-            {/* Size Selection */}
-            <div>
-              <label className="text-sm font-medium text-foreground mb-3 block">
-                Select Size
-              </label>
-              <div className="flex flex-wrap gap-3">
+            {/* Size Select */}
+            <div className="space-y-3">
+              <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground">
+                Select Size / Length
+              </span>
+              <div className="flex flex-wrap gap-2.5">
                 {product.sizes.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
                     className={cn(
-                      "px-5 py-2.5 border rounded-lg text-sm transition-all",
+                      "px-4 py-2 border rounded-full text-xs font-sans font-semibold tracking-wider transition-all duration-300",
                       selectedSize === size
                         ? "border-primary bg-primary/10 text-primary"
-                        : "border-border text-muted-foreground hover:border-primary"
+                        : "border-border/80 bg-white text-muted-foreground hover:border-primary/50"
                     )}
                   >
                     {size}
@@ -271,144 +284,158 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             </div>
 
             {/* Quantity */}
-            <div>
-              <label className="text-sm font-medium text-foreground mb-3 block">
+            <div className="space-y-3">
+              <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground">
                 Quantity
-              </label>
-              <div className="flex items-center gap-4">
+              </span>
+              <div className="flex items-center gap-3">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-12 h-12 border border-border rounded-lg flex items-center justify-center hover:border-primary transition-colors"
+                  className="w-10 h-10 border border-border bg-white rounded-full flex items-center justify-center hover:border-primary text-muted-foreground hover:text-primary transition-all"
                   aria-label="Decrease quantity"
                 >
-                  <Minus className="w-4 h-4" />
+                  <Minus className="w-3.5 h-3.5" />
                 </button>
-                <span className="w-12 text-center text-lg">{quantity}</span>
+                <span className="w-10 text-center text-sm font-sans font-semibold">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-12 h-12 border border-border rounded-lg flex items-center justify-center hover:border-primary transition-colors"
+                  className="w-10 h-10 border border-border bg-white rounded-full flex items-center justify-center hover:border-primary text-muted-foreground hover:text-primary transition-all"
                   aria-label="Increase quantity"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Plus className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="flex gap-4 pt-4">
-              <Button
-                size="lg"
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <button
                 onClick={() => addToCart(product, quantity, selectedSize)}
-                className="flex-1 gold-gradient text-primary-foreground hover:opacity-90 py-6"
+                className="flex-1 py-4 bg-primary text-primary-foreground hover:opacity-90 rounded-full text-xs uppercase tracking-widest font-sans font-semibold transition-all duration-300 flex items-center justify-center gap-1.5 shadow-sm"
               >
-                <ShoppingBag className="w-5 h-5 mr-2" />
-                Add to Cart
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => toggleWishlist(product)}
-                className={cn(
-                  "border-primary py-6",
-                  isInWishlist(product.id)
-                    ? "bg-primary text-primary-foreground"
-                    : "text-primary hover:bg-primary hover:text-primary-foreground"
-                )}
+                <ShoppingBag className="w-4 h-4" />
+                Add to Bag
+              </button>
+
+              <a
+                href={whatsappInquiryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-4 bg-secondary hover:bg-primary/10 text-foreground hover:text-primary rounded-full text-xs uppercase tracking-widest font-sans font-semibold transition-all duration-300 flex items-center justify-center gap-1.5"
               >
-                <Heart
+                <MessageCircle className="w-4 h-4" />
+                Inquire on WhatsApp
+              </a>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => toggleWishlist(product)}
                   className={cn(
-                    "w-5 h-5",
-                    isInWishlist(product.id) && "fill-current"
+                    "p-4 border rounded-full transition-all",
+                    isInWishlist(product.id)
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-white text-muted-foreground hover:border-primary"
                   )}
-                />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-border text-muted-foreground hover:border-primary hover:text-primary py-6"
-              >
-                <Share2 className="w-5 h-5" />
-              </Button>
+                  aria-label="Wishlist"
+                >
+                  <Heart className={cn("w-4 h-4", isInWishlist(product.id) && "fill-current")} />
+                </button>
+
+                <button
+                  className="p-4 border border-border bg-white rounded-full text-muted-foreground hover:border-primary transition-all"
+                  aria-label="Share"
+                >
+                  <Share2 className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
-            {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border">
-              <div className="text-center">
-                <Truck className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="text-xs text-muted-foreground">Free Insured Shipping</p>
+            {/* Service badges */}
+            <div className="grid grid-cols-3 gap-4 pt-8 border-t border-border/40">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-secondary/80 text-primary flex items-center justify-center flex-shrink-0">
+                  <Truck className="w-4 h-4" />
+                </div>
+                <p className="text-[10px] font-sans font-bold uppercase tracking-wider text-muted-foreground leading-tight text-left">Free Insured Shipping</p>
               </div>
-              <div className="text-center">
-                <Shield className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="text-xs text-muted-foreground">Lifetime Warranty</p>
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-secondary/80 text-primary flex items-center justify-center flex-shrink-0">
+                  <Shield className="w-4 h-4" />
+                </div>
+                <p className="text-[10px] font-sans font-bold uppercase tracking-wider text-muted-foreground leading-tight text-left">Lifetime Warranty</p>
               </div>
-              <div className="text-center">
-                <RefreshCw className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="text-xs text-muted-foreground">30-Day Exchange</p>
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-secondary/80 text-primary flex items-center justify-center flex-shrink-0">
+                  <RefreshCw className="w-4 h-4" />
+                </div>
+                <p className="text-[10px] font-sans font-bold uppercase tracking-wider text-muted-foreground leading-tight text-left">30-Day Exchange</p>
               </div>
             </div>
           </motion.div>
+
         </div>
 
-        {/* Product Tabs */}
+        {/* Product Details Tabs */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-20"
+          className="mb-24"
         >
           <Tabs defaultValue="details" className="w-full">
-            <TabsList className="w-full max-w-md mx-auto grid grid-cols-3 bg-card">
-              <TabsTrigger value="details">Details</TabsTrigger>
-              <TabsTrigger value="shipping">Shipping</TabsTrigger>
-              <TabsTrigger value="care">Care</TabsTrigger>
+            <TabsList className="w-full max-w-md mx-auto grid grid-cols-3 bg-secondary/20 p-1 rounded-full border border-border/40">
+              <TabsTrigger value="details" className="rounded-full text-xs font-sans uppercase tracking-widest font-semibold py-2">Specs</TabsTrigger>
+              <TabsTrigger value="shipping" className="rounded-full text-xs font-sans uppercase tracking-widest font-semibold py-2">Shipping</TabsTrigger>
+              <TabsTrigger value="care" className="rounded-full text-xs font-sans uppercase tracking-widest font-semibold py-2">Ornament Care</TabsTrigger>
             </TabsList>
-            <div className="mt-8 p-6 bg-card rounded-2xl border border-border">
-              <TabsContent value="details" className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+            <div className="mt-8 p-8 bg-white rounded-[2rem] border border-border/80 text-left shadow-2-xs">
+              <TabsContent value="details" className="space-y-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div>
-                    <p className="text-sm text-muted-foreground">Category</p>
-                    <p className="text-foreground">{product.category}</p>
+                    <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground block mb-1">Category</span>
+                    <span className="text-sm text-foreground font-semibold font-serif">{product.category}</span>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Metal</p>
-                    <p className="text-foreground">{product.karat} Gold</p>
+                    <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground block mb-1">Metal Composition</span>
+                    <span className="text-sm text-foreground font-semibold font-serif">{product.karat} Gold</span>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Weight</p>
-                    <p className="text-foreground">{product.weight}</p>
+                    <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground block mb-1">Gross Weight</span>
+                    <span className="text-sm text-foreground font-semibold font-serif">{product.weight}</span>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Gender</p>
-                    <p className="text-foreground capitalize">{product.gender}</p>
+                    <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground block mb-1">Gender Class</span>
+                    <span className="text-sm text-foreground font-semibold font-serif capitalize">{product.gender}</span>
                   </div>
                 </div>
-                <div>
-                  <p className="text-sm text-muted-foreground mb-2">Description</p>
-                  <p className="text-foreground leading-relaxed">{product.description}</p>
+                <div className="pt-4 border-t border-border/40 space-y-2">
+                  <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground block">Detailed Description</span>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{product.description}</p>
                 </div>
               </TabsContent>
-              <TabsContent value="shipping" className="space-y-4">
-                <p className="text-foreground">
-                  We offer free insured shipping on all orders across India. Your precious jewellery will be carefully packaged and delivered within 5-7 business days.
+              <TabsContent value="shipping" className="space-y-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
+                <p className="text-foreground font-serif text-base mb-2">Secure Home Delivery Across India</p>
+                <p>
+                  We coordinate with leading secured logistics partners to provide 100% insured delivery directly to your home. Every item requires a signature and photo verification upon receipt.
                 </p>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Free shipping on all orders</li>
-                  <li>• Fully insured delivery</li>
-                  <li>• Real-time tracking available</li>
-                  <li>• Signature required upon delivery</li>
+                <ul className="space-y-1.5 mt-4">
+                  <li>• Free shipping across India</li>
+                  <li>• Fully insured value protection transit</li>
+                  <li>• Real-time digital tracking links</li>
+                  <li>• Delivery within 5-7 business days</li>
                 </ul>
               </TabsContent>
-              <TabsContent value="care" className="space-y-4">
-                <p className="text-foreground">
-                  To maintain the brilliance of your jewellery, we recommend the following care instructions:
+              <TabsContent value="care" className="space-y-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
+                <p className="text-foreground font-serif text-base mb-2">Preserving the Sparkle</p>
+                <p>
+                  To maintain the brilliant luster of your handcrafted heritage jewellery, we recommend checking your settings and getting cleanings done regularly.
                 </p>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Store in a cool, dry place away from direct sunlight</li>
-                  <li>• Remove before swimming, bathing, or exercising</li>
-                  <li>• Clean gently with a soft cloth</li>
-                  <li>• Avoid contact with perfumes and chemicals</li>
-                  <li>• Get professional cleaning annually</li>
+                <ul className="space-y-1.5 mt-4">
+                  <li>• Store individually in fabric-lined pouches</li>
+                  <li>• Remove before physical exercise, swimming, or chemical contact</li>
+                  <li>• Buff gently with a micro-polishing cloth</li>
+                  <li>• Visit our CG Road atelier for annual audits and complimentary ultrasonic cleanings</li>
                 </ul>
               </TabsContent>
             </div>
@@ -418,15 +445,21 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="border-t border-border/40 pt-20"
           >
-            <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-8">
-              You May Also <span className="gold-gradient-text">Like</span>
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center mb-16 space-y-3">
+              <span className="text-[11px] font-sans font-bold tracking-[0.3em] text-primary uppercase block">Matching Sets</span>
+              <h2 className="font-serif text-2xl md:text-4xl text-foreground font-light">
+                You May Also <span className="italic text-primary font-normal font-serif">Like</span>
+              </h2>
+              <div className="w-12 h-[1px] bg-primary/60 mx-auto mt-4" />
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {relatedProducts.map((product, index) => (
                 <ProductCard key={product.id} product={product} index={index} />
               ))}

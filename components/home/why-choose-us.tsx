@@ -38,24 +38,28 @@ const features = [
 
 export function WhyChooseUs() {
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-28 bg-background relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20 space-y-4"
         >
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-            Why Choose <span className="gold-gradient-text">Us</span>
+          <span className="text-[11px] font-sans font-bold tracking-[0.3em] text-primary uppercase">
+            Our Quality Guarantee
+          </span>
+          <h2 className="font-serif text-3xl md:text-5xl text-foreground font-light leading-tight">
+            The Pillars of Our <span className="italic text-primary font-normal font-serif">Legacy</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Experience the difference of shopping with a trusted family-owned jeweller with over six decades of excellence.
+          <div className="w-12 h-[1px] bg-primary/60 mx-auto mt-4" />
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
+            Over six decades of crafting masterpieces with pure gold, sparkling diamonds, and unmatched devotion.
           </p>
         </motion.div>
 
@@ -66,17 +70,18 @@ export function WhyChooseUs() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="p-8 rounded-2xl bg-card border border-border gold-border-hover transition-all duration-300 h-full">
-                <div className="w-14 h-14 rounded-xl gold-gradient flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <feature.icon className="w-7 h-7 text-primary-foreground" />
+              <div className="p-8 rounded-[1.8rem] bg-white border border-border/80 hover:border-primary/30 shadow-xs hover:shadow-lg transition-all duration-500 h-full flex flex-col items-start text-left">
+                {/* Refined Icon Frame */}
+                <div className="w-12 h-12 rounded-full bg-secondary/80 text-primary flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
+                  <feature.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-xl text-foreground mb-3">
+                <h3 className="font-serif text-lg font-semibold text-foreground mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground text-xs font-sans leading-relaxed">
                   {feature.description}
                 </p>
               </div>

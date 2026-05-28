@@ -3,29 +3,29 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-  --background: #0A0A0A;
-  --foreground: #FAFAFA;
-  --card: #111111;
-  --card-foreground: #FAFAFA;
-  --popover: #111111;
-  --popover-foreground: #FAFAFA;
+:root, .dark {
+  --background: #05160E;
+  --foreground: #F4EFE6;
+  --card: #071E13;
+  --card-foreground: #F4EFE6;
+  --popover: #071E13;
+  --popover-foreground: #F4EFE6;
   --primary: #D4AF37;
-  --primary-foreground: #0A0A0A;
-  --secondary: #1A1A1A;
-  --secondary-foreground: #FAFAFA;
-  --muted: #1A1A1A;
-  --muted-foreground: #888888;
+  --primary-foreground: #05160E;
+  --secondary: #0B281B;
+  --secondary-foreground: #F4EFE6;
+  --muted: #0B281B;
+  --muted-foreground: #A3B899;
   --accent: #D4AF37;
-  --accent-foreground: #0A0A0A;
-  --destructive: #DC2626;
+  --accent-foreground: #05160E;
+  --destructive: #991B1B;
   --destructive-foreground: #FAFAFA;
-  --border: #2A2A2A;
-  --input: #2A2A2A;
+  --border: #103625;
+  --input: #103625;
   --ring: #D4AF37;
   --gold: #D4AF37;
-  --gold-light: #FFD700;
-  --radius: 0.5rem;
+  --gold-light: #F3E5AB;
+  --radius: 0.75rem;
 }
 
 @theme inline {
@@ -66,25 +66,30 @@
     @apply bg-background text-foreground;
   }
   ::selection {
-    background: rgba(212, 175, 55, 0.3);
-    color: #FFD700;
+    background: rgba(212, 175, 55, 0.25);
+    color: #D4AF37;
   }
 }
 
 @layer utilities {
   .gold-gradient {
-    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+    background: linear-gradient(135deg, #D4AF37 0%, #FFF3CD 50%, #AA7C11 100%);
+    transition: all 0.3s ease;
+  }
+  .gold-gradient:hover {
+    filter: brightness(1.06);
+    box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.3), 0 8px 10px -6px rgba(212, 175, 55, 0.3);
   }
   .gold-gradient-text {
-    background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+    background: linear-gradient(135deg, #D4AF37 0%, #FFF3CD 50%, #AA7C11 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   .glass {
-    background: rgba(17, 17, 17, 0.8);
+    background: rgba(7, 30, 19, 0.75);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.15);
   }
   .shine-effect {
     position: relative;
@@ -100,25 +105,51 @@
     background: linear-gradient(
       to right,
       transparent 0%,
-      rgba(255, 215, 0, 0.1) 50%,
+      rgba(255, 243, 205, 0.2) 50%,
       transparent 100%
     );
     transform: rotate(30deg);
-    animation: shine 3s ease-in-out infinite;
+    animation: shine 4s ease-in-out infinite;
   }
   @keyframes shine {
     0% { transform: translateX(-100%) rotate(30deg); }
     100% { transform: translateX(100%) rotate(30deg); }
   }
   .gold-glow {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08), 0 1px 3px rgba(212, 175, 55, 0.03);
   }
   .gold-border {
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.2);
   }
   .gold-border-hover:hover {
-    border-color: rgba(212, 175, 55, 0.6);
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.45);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.12);
+  }
+
+  /* Theme color overrides for hardcoded layout elements */
+  .bg-white {
+    background-color: var(--card) !important;
+  }
+  .bg-white\/90 {
+    background-color: rgba(7, 30, 19, 0.9) !important;
+  }
+  .bg-white\/95 {
+    background-color: rgba(7, 30, 19, 0.95) !important;
+  }
+  .bg-white\/75 {
+    background-color: rgba(7, 30, 19, 0.75) !important;
+  }
+  .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+  }
+  .hover\:bg-white\/10:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+  }
+  .focus\:bg-white:focus {
+    background-color: var(--card) !important;
+  }
+  .text-white {
+    color: #F4EFE6 !important; /* Silk cream for all white-text fallback */
   }
 }
 
@@ -127,14 +158,14 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #05160E;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #D4AF37 0%, #FFD700 100%);
+  background: linear-gradient(180deg, #D4AF37 0%, #F3E5AB 100%);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FFD700;
+  background: #D4AF37;
 }
 
 /* Loading animation */

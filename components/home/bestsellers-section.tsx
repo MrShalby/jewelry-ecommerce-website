@@ -11,36 +11,39 @@ export function BestsellersSection() {
   const bestsellers = products.filter((p) => p.bestseller).slice(0, 4)
 
   return (
-    <section className="py-24 bg-card">
-      <div className="container mx-auto px-4">
+    <section className="py-28 bg-white border-y border-border/40">
+      <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
         >
           <div>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
-              Best <span className="gold-gradient-text">Sellers</span>
+            <span className="text-[11px] font-sans font-bold tracking-[0.3em] text-primary uppercase block mb-2">
+              Client Favorites
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground font-light">
+              Our <span className="italic text-primary font-normal font-serif">Bestsellers</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl">
-              Our most loved pieces, chosen by customers who appreciate exceptional craftsmanship and timeless design.
+            <p className="text-muted-foreground text-sm mt-4 max-w-xl leading-relaxed">
+              Our most loved handcrafted creations, selected by customers who appreciate heritage techniques and brilliant diamonds.
             </p>
           </div>
           <Button
             variant="outline"
-            className="mt-6 md:mt-0 border-primary text-primary hover:bg-primary hover:text-primary-foreground group"
+            className="mt-6 md:mt-0 border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground text-xs uppercase tracking-widest px-6 py-5 rounded-full group shrink-0"
             asChild
           >
             <Link href="/shop">
-              View All
+              View Catalog
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {bestsellers.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}

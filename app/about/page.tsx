@@ -1,176 +1,197 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
-import { Diamond, Award, Users, Heart } from "lucide-react"
+import { Diamond, Award, Users, Heart, ArrowRight, MapPin } from "lucide-react"
 import { siteConfig } from "@/lib/config"
+import { Button } from "@/components/ui/button"
 
 const timeline = [
   {
     year: "1965",
-    title: "The Beginning",
-    description: "Shri Kantilal Shah established a small jewellery workshop in Manek Chowk, Ahmedabad, with a vision to create jewellery that tells stories.",
+    title: "The Workshop in Manek Chowk",
+    description: "Shri Kantilal Shah established a small jewellery atelier, making custom ornaments with intricate hand filigree work.",
   },
   {
     year: "1985",
-    title: "Second Generation",
-    description: "Sons Rajesh and Mahesh joined the family business, bringing fresh perspectives while honoring traditional craftsmanship.",
+    title: "Legacy of the Sons",
+    description: "Rajesh and Mahesh Shah joined the house, preserving ancestral methods while introducing modern auditing standards.",
   },
   {
     year: "2000",
-    title: "Expansion",
-    description: "Opened our flagship showroom in CG Road, becoming one of Ahmedabad's most trusted jewellery destinations.",
+    title: "Flagship CG Road Showroom",
+    description: "Opened our flagship showroom on C.G. Road, establishing Shalby Jewels as Ahmedabad's premiere bridal atelier.",
   },
   {
     year: "2015",
-    title: "Third Generation",
-    description: "The new generation brings innovation with digital presence while maintaining our commitment to quality.",
+    title: "E-Commerce Atelier",
+    description: "The third generation expanded our presence nationwide, shipping fully insured diamond pieces across India.",
   },
   {
     year: "2024",
-    title: "Modern Legacy",
-    description: "Combining 60 years of expertise with modern technology to serve customers across India.",
+    title: "Golden Jubilee Heritage",
+    description: "Celebrating nearly 60 years of absolute purity, legacy customer trust, and timeless designs.",
   },
 ]
 
 const values = [
   {
     icon: Diamond,
-    title: "Uncompromising Quality",
-    description: "Every piece is crafted with the finest materials and undergoes rigorous quality checks.",
+    title: "GIA Certified Diamonds",
+    description: "Every diamond is hand-selected and verified by world-leading gemological institutes.",
   },
   {
     icon: Award,
-    title: "Master Craftsmanship",
-    description: "Our artisans bring generations of expertise to every creation.",
+    title: "BIS 916 Hallmarked",
+    description: "Absolute trust and gold purity certifications stamped on every heirloom ornament.",
   },
   {
     icon: Users,
-    title: "Customer First",
-    description: "Building lifelong relationships through exceptional service and trust.",
+    title: "Artisanal Heritage",
+    description: "Support for master karigars preserving generations of traditional Indian designs.",
   },
   {
     icon: Heart,
-    title: "Passion for Perfection",
-    description: "Every detail matters in our pursuit of creating timeless pieces.",
+    title: "Bespoke Design",
+    description: "Collaborate directly with our design consultants to create one-of-a-kind treasures.",
   },
+]
+
+const stats = [
+  { number: "60+", label: "Years of Excellence" },
+  { number: "50K+", label: "Royal Clientele" },
+  { number: "120+", label: "Master Artisans" },
+  { number: "10K+", label: "Custom Blueprints" },
 ]
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 bg-background">
+      
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[50vh] min-h-[380px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1920&q=80"
-            alt="About Shalby Jewels"
+            alt="Shalby Jewels Heritage"
             fill
+            priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+          <div className="absolute inset-0 bg-background/90" />
         </div>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 container mx-auto px-4 text-center"
+          className="relative z-10 container mx-auto px-6 text-center space-y-4"
         >
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
-            Our <span className="gold-gradient-text">Story</span>
+          <span className="text-[11px] font-sans font-bold tracking-[0.4em] text-primary uppercase block">
+            Our Legacy
+          </span>
+          <h1 className="font-serif text-4xl md:text-6xl text-foreground font-light leading-tight">
+            The House of <span className="italic text-primary font-normal font-serif">Shalby Jewels</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Three generations of passion, craftsmanship, and dedication to creating jewellery that becomes part of your family&apos;s story.
+          <div className="w-12 h-[1px] bg-primary/60 mx-auto mt-4" />
+          <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+            Crafting royal gold and diamond masterpieces in the heart of Gujarat since 1965.
           </p>
         </motion.div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Story / Legacy section */}
+      <section className="py-24">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Story text - Left 6 cols */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="lg:col-span-6 space-y-6 text-left"
             >
-              <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-6">
-                A Legacy of <span className="gold-gradient-text">Excellence</span>
+              <span className="text-[11px] font-sans font-bold tracking-[0.3em] text-primary uppercase">
+                Established 1965
+              </span>
+              <h2 className="font-serif text-2xl md:text-4xl text-foreground font-light leading-tight">
+                Generations of Fine <span className="italic text-primary font-normal font-serif">Karigari</span>
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="w-10 h-[1px] bg-primary/50" />
+              
+              <div className="space-y-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
                 <p>
-                  In the bustling lanes of Manek Chowk, Ahmedabad&apos;s historic jewellery market, {siteConfig.name} was born in 1965 from a simple dream - to create jewellery that captures the essence of Indian heritage while embracing timeless elegance.
+                  Our journey began in the legendary lanes of Manek Chowk, Ahmedabad. Our founder, Shri Kantilal Shah, envisioned a brand where the highest purity gold would blend with traditional Indian design blueprints to tell stories of royalty and elegance.
                 </p>
                 <p>
-                  Our founder, Shri Kantilal Shah, believed that every piece of jewellery should tell a story. Starting with a small workshop and a handful of skilled artisans, he laid the foundation of what would become one of Gujarat&apos;s most trusted jewellery houses.
-                </p>
-                <p>
-                  Today, three generations later, we continue to honor that legacy. Our master craftsmen blend traditional techniques passed down through generations with modern precision, creating pieces that are both works of art and treasured heirlooms.
+                  For six decades, we have remained committed to absolute integrity, GIA-level diamond certifications, and direct patronage to Gujarat’s artisan families. Today, under the third generation, we bring our CG Road couture experience directly to discerning customers nationwide.
                 </p>
               </div>
             </motion.div>
+
+            {/* Showcase Image - Right 6 cols */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="lg:col-span-6 relative flex justify-center"
             >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden gold-border">
-                <Image
-                  src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80"
-                  alt="Craftsmanship"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 gold-gradient rounded-2xl flex items-center justify-center">
-                <div className="text-center text-primary-foreground">
-                  <span className="block text-3xl font-serif font-bold">60+</span>
-                  <span className="text-sm">Years</span>
+              <div className="p-2 border border-border/80 bg-white rounded-[2rem] w-full max-w-[450px]">
+                <div className="relative aspect-[4/5] rounded-[1.7rem] overflow-hidden bg-secondary">
+                  <Image
+                    src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80"
+                    alt="Legacy Craftsmanship"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-white border-y border-border/40">
+        <div className="container mx-auto px-6">
+          
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-20 space-y-4"
           >
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-              Our <span className="gold-gradient-text">Values</span>
+            <span className="text-[11px] font-sans font-bold tracking-[0.3em] text-primary uppercase">
+              Brand Guidelines
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground font-light">
+              Purity in Every <span className="italic text-primary font-normal font-serif">Detail</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              The principles that guide everything we do.
-            </p>
+            <div className="w-12 h-[1px] bg-primary/60 mx-auto" />
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center p-6 border border-border/40 rounded-[1.5rem] bg-secondary/15 hover:shadow-xs transition-all"
               >
-                <div className="w-16 h-16 gold-gradient rounded-full flex items-center justify-center mx-auto mb-6">
-                  <value.icon className="w-8 h-8 text-primary-foreground" />
+                <div className="w-12 h-12 bg-secondary text-primary rounded-full flex items-center justify-center mx-auto mb-6 border border-primary/10">
+                  <value.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-serif text-xl text-foreground mb-3">
+                <h3 className="font-serif text-base font-semibold text-foreground mb-3">
                   {value.title}
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-xs leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
@@ -180,26 +201,28 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-6">
+          
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-20 space-y-4"
           >
-            <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-              Our <span className="gold-gradient-text">Journey</span>
+            <span className="text-[11px] font-sans font-bold tracking-[0.3em] text-primary uppercase">
+              Historical Milestones
+            </span>
+            <h2 className="font-serif text-3xl md:text-5xl text-foreground font-light">
+              Our Journey of <span className="italic text-primary font-normal font-serif">Gold</span>
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Milestones that shaped who we are today.
-            </p>
+            <div className="w-12 h-[1px] bg-primary/60 mx-auto" />
           </motion.div>
 
           <div className="relative max-w-3xl mx-auto">
-            {/* Timeline Line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary to-transparent" />
+            {/* Central Line */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[1px] bg-border" />
 
             {timeline.map((item, index) => (
               <motion.div
@@ -207,25 +230,25 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex items-start gap-8 mb-12 ${
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`relative flex items-start gap-8 mb-16 ${
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Dot */}
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 -translate-x-1/2 rounded-full gold-gradient" />
+                {/* Gold Circle Node */}
+                <div className="absolute left-8 md:left-1/2 w-3.5 h-3.5 -translate-x-1/2 rounded-full border border-primary/55 bg-background z-10" />
 
-                {/* Content */}
+                {/* Content Frame */}
                 <div
                   className={`ml-16 md:ml-0 md:w-1/2 ${
                     index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
                   }`}
                 >
-                  <span className="text-primary font-serif text-2xl">{item.year}</span>
-                  <h3 className="font-serif text-xl text-foreground mt-2 mb-2">
+                  <span className="text-primary font-serif italic text-2xl font-semibold">{item.year}</span>
+                  <h3 className="font-serif text-lg font-semibold text-foreground mt-2 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground">{item.description}</p>
+                  <p className="text-muted-foreground text-xs leading-relaxed">{item.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -233,33 +256,50 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Stats */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
+      {/* Stats Counter Section */}
+      <section className="py-24 bg-white border-y border-border/40">
+        <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: "60+", label: "Years of Excellence" },
-              { number: "50K+", label: "Happy Customers" },
-              { number: "100+", label: "Master Artisans" },
-              { number: "10K+", label: "Unique Designs" },
-            ].map((stat, index) => (
+            {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="text-center space-y-1"
               >
-                <span className="font-serif text-4xl md:text-5xl gold-gradient-text">
+                <span className="font-serif text-4xl md:text-5xl font-light text-primary">
                   {stat.number}
                 </span>
-                <p className="text-muted-foreground mt-2">{stat.label}</p>
+                <p className="text-[10px] font-sans font-bold uppercase tracking-widest text-muted-foreground">{stat.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* About CTA */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-6 text-center max-w-xl space-y-6">
+          <MapPin className="w-8 h-8 text-primary mx-auto" />
+          <h2 className="font-serif text-2xl md:text-4xl text-foreground font-light">
+            Visit Our Showroom
+          </h2>
+          <p className="text-xs text-muted-foreground leading-relaxed font-sans">
+            Experience our heritage gallery in CG Road, Ahmedabad. View the designs, touch the gold filigree, and co-create custom bridal sets with our gem consultants.
+          </p>
+          <Button
+            size="lg"
+            variant="gold"
+            className="text-xs uppercase tracking-widest px-8 py-5 rounded-full mt-4"
+            asChild
+          >
+            <Link href="/contact">Book Consultation</Link>
+          </Button>
+        </div>
+      </section>
+
     </div>
   )
 }
