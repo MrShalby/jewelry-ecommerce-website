@@ -204,17 +204,16 @@ export function Navbar() {
               </button>
 
               {/* Consultation CTA */}
-              <Button
-                variant="outline"
-                size="sm"
-                className="hidden md:inline-flex border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground text-[11px] uppercase tracking-widest font-sans px-5 py-4 rounded-full group/btn relative overflow-hidden transition-all duration-300 shine-effect"
-                asChild
+              <Link
+                href="/contact"
+                className="hidden md:inline-flex items-center justify-center border border-primary/50 text-primary hover:text-primary-foreground text-[10px] uppercase tracking-widest font-sans font-bold px-5 py-2.5 rounded-full relative overflow-hidden group/btn transition-all duration-500 hover:shadow-[0_0_20px_rgba(212,175,55,0.35)] shrink-0"
               >
-                <Link href="/contact">
-                  <Calendar className="w-3.5 h-3.5 mr-1.5 group-hover/btn:scale-110 transition-transform" />
-                  <span className="relative z-10">Book Consult</span>
-                </Link>
-              </Button>
+                {/* Gold sliding background fill on hover */}
+                <span className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] via-[#FFF3CD] to-[#AA7C11] translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-out z-0" />
+                
+                <Calendar className="w-3.5 h-3.5 mr-1.5 relative z-10 group-hover/btn:scale-110 transition-transform" />
+                <span className="relative z-10">Book Consult</span>
+              </Link>
 
               {/* Mobile Menu Toggle */}
               <button
