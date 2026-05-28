@@ -10,12 +10,12 @@ import { ScrollProgress } from '@/components/animations/scroll-progress'
 import { siteConfig } from '@/lib/config'
 import './globals.css'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   variable: '--font-inter',
 })
 
-const playfair = Playfair_Display({ 
+const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: '--font-playfair',
 })
