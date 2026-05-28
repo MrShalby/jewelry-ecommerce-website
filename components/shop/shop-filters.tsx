@@ -71,7 +71,7 @@ export function ShopFilters({ isOpen, onClose, filters, setFilters }: ShopFilter
         animate={{ x: isOpen ? 0 : "-100%" }}
         transition={{ type: "spring", damping: 25, stiffness: 200 }}
         className={cn(
-          "fixed lg:relative lg:translate-x-0 top-0 left-0 h-full lg:h-auto w-80 lg:w-64",
+          "fixed lg:relative lg:translate-x-0 top-0 left-0 h-full lg:h-auto w-80 lg:w-full",
           "bg-card lg:bg-transparent border-r border-border lg:border-0",
           "z-50 lg:z-0 overflow-y-auto",
           "transition-transform lg:transition-none"

@@ -136,7 +136,7 @@ export function ShopContent() {
               "px-5 py-2.5 rounded-full text-[11px] font-sans uppercase tracking-widest font-semibold transition-all shrink-0 border",
               filters.category === cat.value
                 ? "gold-gradient text-primary-foreground border-primary"
-                : "border-border bg-white text-muted-foreground hover:text-primary hover:border-primary/50"
+                : "border-border bg-card text-muted-foreground hover:text-primary hover:border-primary/50"
             )}
           >
             {cat.label}
@@ -154,7 +154,7 @@ export function ShopContent() {
             placeholder="Search our heritage catalog..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-white border border-border/80 rounded-full text-xs font-sans placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-all shadow-2-xs"
+            className="w-full pl-10 pr-4 py-3 bg-card text-foreground border border-border/80 rounded-full text-xs font-sans placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-all shadow-2-xs"
           />
         </div>
 
@@ -163,12 +163,12 @@ export function ShopContent() {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-4 py-3 bg-white border border-border/80 rounded-full text-[11px] font-sans font-bold uppercase tracking-wider text-muted-foreground focus:outline-none focus:border-primary"
+            className="px-4 py-3 bg-card border border-border/80 rounded-full text-[11px] font-sans font-bold uppercase tracking-wider text-foreground focus:outline-none focus:border-primary cursor-pointer"
           >
-            <option value="featured">Featured First</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="newest">Featured Highlights</option>
+            <option value="featured" className="bg-card text-foreground">Featured First</option>
+            <option value="price-asc" className="bg-card text-foreground">Price: Low to High</option>
+            <option value="price-desc" className="bg-card text-foreground">Price: High to Low</option>
+            <option value="newest" className="bg-card text-foreground">Featured Highlights</option>
           </select>
 
           {/* Filter Toggle (Mobile) */}
@@ -182,7 +182,7 @@ export function ShopContent() {
           </Button>
 
           {/* Grid Columns Selector */}
-          <div className="hidden md:flex items-center gap-1 p-1 bg-white border border-border/80 rounded-full shadow-2-xs">
+          <div className="hidden md:flex items-center gap-1 p-1 bg-card border border-border/80 rounded-full shadow-2-xs">
             <button
               onClick={() => setGridCols(2)}
               className={cn(
@@ -224,7 +224,7 @@ export function ShopContent() {
       {/* Main Content Layout */}
       <div className="flex gap-8 items-start">
         {/* Filters Sidebar (Desktop) */}
-        <div className="hidden lg:block w-60 flex-shrink-0 bg-white border border-border/60 p-6 rounded-[1.6rem] shadow-2-xs">
+        <div className="hidden lg:block w-64 flex-shrink-0 bg-card border border-border/60 p-6 rounded-[1.6rem] shadow-2-xs">
           <ShopFilters
             isOpen={true}
             onClose={() => {}}
@@ -246,7 +246,7 @@ export function ShopContent() {
         {/* Products Showcase Grid */}
         <div className="flex-1">
           {displayedProducts.length === 0 ? (
-            <div className="text-center py-20 bg-white border border-border/60 rounded-[1.6rem] p-8">
+            <div className="text-center py-20 bg-card border border-border/60 rounded-[1.6rem] p-8">
               <span className="text-4xl block mb-4">💎</span>
               <h3 className="font-serif text-lg font-semibold text-foreground mb-2">No Jewellery Found</h3>
               <p className="text-xs text-muted-foreground mb-6 max-w-xs mx-auto leading-relaxed">We couldn&apos;t find any items matching your exact specifications. Try adjusting your parameters.</p>
@@ -272,8 +272,8 @@ export function ShopContent() {
                 className={cn(
                   "grid gap-6 md:gap-8",
                   gridCols === 2 && "grid-cols-1 sm:grid-cols-2",
-                  gridCols === 3 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-                  gridCols === 4 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  gridCols === 3 && "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3",
+                  gridCols === 4 && "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
                 )}
               >
                 {displayedProducts.map((product, index) => (

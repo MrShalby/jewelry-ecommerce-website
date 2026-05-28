@@ -80,7 +80,7 @@ export function TestimonialsSection() {
   }
 
   return (
-    <section className="py-28 relative overflow-hidden border-t border-border/40 bg-gradient-to-b from-background via-[#FDFCF7]/40 to-background">
+    <section className="py-28 relative overflow-hidden border-t border-border/40 bg-gradient-to-b from-background via-secondary/30 to-background">
       {/* Decorative background elements */}
       <div className="absolute top-1/2 left-0 w-[30vw] h-[30vw] rounded-full bg-[#C5A059]/3 blur-[120px] -z-10 -translate-y-1/2" />
       <div className="absolute top-1/2 right-0 w-[25vw] h-[25vw] rounded-full bg-[#F1E4C3]/5 blur-[120px] -z-10 -translate-y-1/2" />
@@ -176,7 +176,7 @@ export function TestimonialsSection() {
               <div className="flex items-center gap-6 mt-10 pt-6 border-t border-border/40">
                 <button
                   onClick={prev}
-                  className="p-3 rounded-full border border-border bg-white text-muted-foreground hover:border-primary hover:text-primary hover:bg-secondary/40 transition-all duration-300 shadow-2-xs hover:shadow-xs group cursor-pointer"
+                  className="p-3 rounded-full border border-border bg-card text-muted-foreground hover:border-primary hover:text-primary hover:bg-secondary/40 transition-all duration-300 shadow-2-xs hover:shadow-xs group cursor-pointer"
                   aria-label="Previous testimonial"
                 >
                   <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
@@ -203,7 +203,7 @@ export function TestimonialsSection() {
 
                 <button
                   onClick={next}
-                  className="p-3 rounded-full border border-border bg-white text-muted-foreground hover:border-primary hover:text-primary hover:bg-secondary/40 transition-all duration-300 shadow-2-xs hover:shadow-xs group cursor-pointer"
+                  className="p-3 rounded-full border border-border bg-card text-muted-foreground hover:border-primary hover:text-primary hover:bg-secondary/40 transition-all duration-300 shadow-2-xs hover:shadow-xs group cursor-pointer"
                   aria-label="Next testimonial"
                 >
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -220,7 +220,7 @@ export function TestimonialsSection() {
               <div className="absolute -inset-4 border border-[#C5A059]/20 rounded-[2.8rem] pointer-events-none z-0 translate-x-3 translate-y-3" />
               
               {/* Main Image Frame */}
-              <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden border-[6px] border-white shadow-2xl bg-secondary z-10">
+              <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden border-[6px] border-secondary shadow-2xl bg-secondary z-10">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={current}
@@ -252,7 +252,7 @@ export function TestimonialsSection() {
                   animate="center"
                   exit="exit"
                   transition={{ duration: 0.6, delay: 0.15 }}
-                  className="absolute -bottom-6 -right-6 bg-white border border-[#C5A059]/15 p-3 rounded-2xl shadow-xl z-20 flex items-center gap-3 max-w-[220px]"
+                  className="absolute -bottom-6 -right-6 bg-card border border-[#C5A059]/15 p-3 rounded-2xl shadow-xl z-20 flex items-center gap-3 max-w-[220px]"
                 >
                   <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-secondary border border-border shrink-0">
                     <Image

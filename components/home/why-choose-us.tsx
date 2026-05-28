@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Diamond, Shield, Award, Truck, Gem, RefreshCw } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const features = [
   {
@@ -73,12 +74,27 @@ export function WhyChooseUs() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="p-8 rounded-[1.8rem] bg-white border border-border/80 hover:border-primary/30 shadow-xs hover:shadow-lg transition-all duration-500 h-full flex flex-col items-start text-left">
-                {/* Refined Icon Frame */}
-                <div className="w-12 h-12 rounded-full bg-secondary/80 text-primary flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
-                  <feature.icon className="w-5 h-5" />
+              <div className="relative p-8 rounded-[1.8rem] bg-card border border-border/70 hover:border-primary/40 shadow-xs hover:shadow-[0_20px_50px_rgba(212,175,55,0.08)] hover:bg-gradient-to-br hover:from-card hover:to-[#0B281B] -translate-y-0 hover:-translate-y-2 transition-all duration-500 h-full flex flex-col items-start text-left overflow-hidden">
+                {/* Deluxe Gold corner brackets */}
+                <span className="absolute top-0 right-0 w-0 h-0 border-t-[1.5px] border-r-[1.5px] border-primary/0 group-hover:w-6 group-hover:h-6 group-hover:border-primary/60 group-hover:opacity-100 transition-all duration-500 rounded-tr-[1.8rem] pointer-events-none" />
+                <span className="absolute bottom-0 left-0 w-0 h-0 border-b-[1.5px] border-l-[1.5px] border-primary/0 group-hover:w-6 group-hover:h-6 group-hover:border-primary/60 group-hover:opacity-100 transition-all duration-500 rounded-bl-[1.8rem] pointer-events-none" />
+
+                {/* Refined Icon Frame with spinning ring and specific item hover transitions */}
+                <div className="relative w-12 h-12 rounded-full bg-secondary/60 text-primary flex items-center justify-center mb-6 border border-primary/20 group-hover:border-primary/50 transition-all duration-500 group-hover:scale-110 shadow-[0_0_15px_rgba(212,175,55,0.05)]">
+                  {/* Outer spinning dash ring on hover */}
+                  <span className="absolute inset-0 rounded-full border border-dashed border-primary/0 group-hover:border-primary/45 group-hover:animate-[spin_8s_linear_infinite] transition-all" />
+                  <feature.icon className={cn(
+                    "w-5 h-5 transition-all duration-500 relative z-10",
+                    feature.title === "Certified Quality" && "group-hover:rotate-[360deg]",
+                    feature.title === "Lifetime Warranty" && "group-hover:scale-115 group-hover:rotate-6",
+                    feature.title === "60+ Years Legacy" && "group-hover:-translate-y-1 group-hover:scale-110",
+                    feature.title === "Insured Delivery" && "group-hover:translate-x-1 group-hover:scale-110",
+                    feature.title === "BIS Hallmarked" && "group-hover:scale-120 group-hover:rotate-12",
+                    feature.title === "Easy Exchange" && "group-hover:rotate-180"
+                  )} />
                 </div>
-                <h3 className="font-serif text-lg font-semibold text-foreground mb-3">
+                
+                <h3 className="font-serif text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                   {feature.title}
                 </h3>
                 <p className="text-muted-foreground text-xs font-sans leading-relaxed">

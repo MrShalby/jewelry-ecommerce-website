@@ -56,7 +56,7 @@ export function CTABanner() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary/40 text-primary hover:bg-primary/5 text-xs uppercase tracking-widest px-8 py-6 rounded-full"
+              className="border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground text-xs uppercase tracking-widest px-8 py-6 rounded-full transition-all duration-300"
               asChild
             >
               <a href={`tel:${siteConfig.phone}`}>

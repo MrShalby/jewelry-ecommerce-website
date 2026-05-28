@@ -179,7 +179,7 @@ export default function GalleryPage() {
                   />
                   
                   {/* Rich Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 z-10 text-left">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 z-10 text-left">
                     <span className="text-[10px] tracking-[0.3em] uppercase text-primary font-semibold mb-1.5 block">
                       {image.category} Showcase
                     </span>

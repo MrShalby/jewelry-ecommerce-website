@@ -174,6 +174,34 @@
     color: #F4EFE6 !important;
     /* Silk cream for all white-text fallback */
   }
+
+  /* Infinite Marquee Left to Right */
+  .marquee-container {
+    mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .marquee-track-ltr {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: marquee-ltr 30s linear infinite;
+  }
+
+  .marquee-track-ltr:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-ltr {
+    0% {
+      transform: translateX(-33.3333%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
 
 /* Hide scrollbar for all browsers */
@@ -201,4 +229,16 @@ html {
   50% {
     opacity: 1;
   }
+}
+
+/* Native select and option styling for consistent dark theme on all browsers */
+select {
+  color: var(--foreground) !important;
+  background-color: var(--card) !important;
+}
+
+select option {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  padding: 10px !important;
 }

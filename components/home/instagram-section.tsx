@@ -37,31 +37,29 @@ export function InstagramSection() {
           </p>
         </motion.div>
 
-        {/* Lookbook Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {instagramPosts.map((post, index) => (
-            <motion.a
-              key={post.id}
-              href={siteConfig.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, scale: 0.96 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="relative aspect-square rounded-[1.25rem] overflow-hidden group border border-border/40 shadow-xs block"
-            >
-              <Image
-                src={post.image}
-                alt={`Instagram post ${post.id}`}
-                fill
-                className="object-cover transition-transform duration-[1200ms] group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-[#D4AF37]/0 group-hover:bg-[#D4AF37]/20 transition-all duration-300 flex items-center justify-center pointer-events-none">
-                <Instagram className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-            </motion.a>
-          ))}
+        {/* Lookbook Marquee */}
+        <div className="marquee-container py-4">
+          <div className="marquee-track-ltr">
+            {[...instagramPosts, ...instagramPosts, ...instagramPosts].map((post, index) => (
+              <a
+                key={`${post.id}-${index}`}
+                href={siteConfig.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[260px] md:h-[260px] aspect-square rounded-[1.5rem] overflow-hidden group border border-border/40 shadow-xs block shrink-0 transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/30"
+              >
+                <Image
+                  src={post.image}
+                  alt={`Instagram post ${post.id}`}
+                  fill
+                  className="object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-[#D4AF37]/0 group-hover:bg-[#D4AF37]/20 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                  <Instagram className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

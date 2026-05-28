@@ -42,7 +42,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       className="group h-full"
     >
       {/* Outer frame styling */}
-      <div className="p-3 bg-white border border-border/80 rounded-[1.6rem] transition-all duration-500 hover:shadow-lg hover:border-primary/40 relative flex flex-col justify-between h-full">
+      <div className="p-3 bg-card border border-border/80 rounded-[1.6rem] transition-all duration-500 hover:shadow-lg hover:border-primary/40 relative flex flex-col justify-between h-full">
         
         <div>
           {/* Image Container with Rounded Corners */}
@@ -86,7 +86,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                   toggleWishlist(product)
                 }}
                 className={cn(
-                  "p-2 bg-white/90 backdrop-blur-xs rounded-full shadow-xs transition-colors",
+                  "p-2 bg-card/90 backdrop-blur-xs rounded-full shadow-xs transition-colors border border-border/30",
                   isInWishlist(product.id) ? "text-red-500" : "text-muted-foreground hover:text-red-500"
                 )}
                 aria-label="Wishlist"
@@ -101,7 +101,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
                   e.preventDefault()
                   openQuickView(product)
                 }}
-                className="p-2 bg-white/90 backdrop-blur-xs rounded-full shadow-xs text-muted-foreground hover:text-primary transition-colors"
+                className="p-2 bg-card/90 backdrop-blur-xs rounded-full shadow-xs text-muted-foreground hover:text-primary transition-colors border border-border/30"
                 aria-label="Quick view"
               >
                 <Eye className="w-4 h-4" />
